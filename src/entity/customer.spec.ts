@@ -3,26 +3,26 @@ import Customer from "./customer"
 
 describe('Customer unit tests', () => {
 
-  it('should throw error when id is empty', () => {
+  it('Should throw error when id is empty', () => {
     expect(() => {
       let customer = new Customer('', 'wallison')
     }).toThrowError("Id is required")
   })
 
-  it('should throw error when name is empty', () => {
+  it('Should throw error when name is empty', () => {
     expect(() => {
       let customer = new Customer('123', '')
     }).toThrowError("Name is required")
   })
 
-  it('should change name', () => {
-    const customer = new Customer('123', 'wallison')
-    customer.changeName('Wallison Moura')
+  it('Should change name', () => {
+    const customer = new Customer('123', 'Customer 1')
+    customer.changeName('Customer 2')
    
-    expect(customer.name).toBe('Wallison Moura')
+    expect(customer.name).toBe('Customer 2')
   })
 
-  it('should activate customer', () => {
+  it('Should activate customer', () => {
     const customer = new Customer('123', 'Customer 1')
     const address = new Address('street 1', 123, '12345-987', 'Recife')
     customer.Address = address
@@ -32,7 +32,7 @@ describe('Customer unit tests', () => {
     expect(customer.isActive()).toBe(true)
   })
 
-  it('should throw error when address is undefined when you activate a customer', () => {
+  it('Should throw error when address is undefined when you activate a customer', () => {
 
     expect(() => {
       const customer = new Customer('123', 'Customer 1')
@@ -46,5 +46,17 @@ describe('Customer unit tests', () => {
     customer.deactivate()
    
     expect(customer.isActive()).toBe(false)
+  })
+
+  it('Should add reward points', () => {
+    const customer = new Customer('c1', 'Customer 1')
+    expect(customer.rewardPoints).toBe(0)
+
+    customer.addRewardPoints(10)
+    expect(customer.rewardPoints).toBe(10)
+   
+    customer.addRewardPoints(10)
+    expect(customer.rewardPoints).toBe(20)
+
   })
 })
