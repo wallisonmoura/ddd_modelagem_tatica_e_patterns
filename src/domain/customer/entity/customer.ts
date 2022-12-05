@@ -13,17 +13,7 @@ export default class Customer {
     this._name = name
     this.validate()
   }
-
-  validate() {
-    if (this._name.length === 0) {
-      throw new Error("Name is required")
-    }
-
-    if (this._id.length === 0) {
-      throw new Error("Id is required")
-    }
-  }
-
+  
   get id(): string {
     return this._id
   }
@@ -34,6 +24,16 @@ export default class Customer {
 
   get rewardPoints(): number {
     return this._rewardPoints
+  }
+
+  validate() {
+    if (this._name.length === 0) {
+      throw new Error("Name is required")
+    }
+
+    if (this._id.length === 0) {
+      throw new Error("Id is required")
+    }
   }
 
   changeName(name: string) {
